@@ -289,6 +289,15 @@ public:
     p->second.get(pgid.ps(), up, up_primary, acting, acting_primary);
   }
 
+ bool getCheck(pg_t pgid,
+             std::vector<int> *up,
+             int *up_primary,
+             std::vector<int> *acting,
+             int *acting_primary) const {
+        auto p = pools.find(pgid.pool());
+        return (p == pools.end());
+    }
+
   const mempool::osdmap_mapping::vector<pg_t>& get_osd_acting_pgs(unsigned osd) {
     assert(osd < acting_rmap.size());
     return acting_rmap[osd];

@@ -105,7 +105,7 @@ else
         ;;
     centos|fedora|rhel|ol|virtuozzo)
         yumdnf="yum"
-        builddepcmd="yum-builddep -y"
+        builddepcmd="yum-builddep -y --skip-broken"
         if test "$(echo "$VERSION_ID >= 22" | bc)" -ne 0; then
             yumdnf="dnf"
             builddepcmd="dnf -y builddep --allowerasing"
