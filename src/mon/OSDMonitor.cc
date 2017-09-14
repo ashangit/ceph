@@ -3226,7 +3226,8 @@ void OSDMonitor::update_creating_pgs()
     auto mapped = pg.second.first;
     dout(20) << __func__ << " looking up " << pgid << "@" << mapped << dendl;
       if(mapping.getCheck(pgid, nullptr, nullptr, nullptr, &acting_primary)) {
-          creating_pgs.pgs.erase(pgid, pgid);
+          const auto pg_test=creating_pgs.pgs.find(pgid);
+          creating_pgs.pgs.erase(pg_test);
           continue;
       }
     mapping.get(pgid, nullptr, nullptr, nullptr, &acting_primary);
